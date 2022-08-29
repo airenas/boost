@@ -7,7 +7,7 @@ lotus_test_image=$(docker_user)/lotus-test:$(lotus_version)
 ##################################################################################
 lotus-$(lotus_version):
 	git clone --depth 1 --branch v$(lotus_version) https://github.com/filecoin-project/lotus $@
-lotus-$(lotus_version)/Dockerfile.lotus.fixed: lotus-test/Dockerfile.lotus.fixed
+lotus-$(lotus_version)/Dockerfile.lotus.fixed: lotus-test/Dockerfile.lotus.fixed | lotus-$(lotus_version)
 	cp $^ $@
 prepare/lotus-test: lotus-$(lotus_version)/Dockerfile.lotus.fixed | lotus-$(lotus_version)
 	cd lotus-$(lotus_version) && docker build -f Dockerfile.lotus.fixed --target lotus-test -t $(lotus_test_image) .
