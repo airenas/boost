@@ -31,7 +31,9 @@ prepare/lotus-test: info/lotus-test | $(lotus_checkout_dir)
 ##################################################################################
 build/%: prepare/lotus-test
 	cd $* && make dbuild
-build/boost:
+../../build/.update-modules: 
+	cd ../../ && $(MAKE) build/.update-modules	
+build/boost: ../../build/.update-modules prepare/lotus-test
 	cd boost && make dbuild
 push/%: prepare/lotus-test
 	cd $* && make dpush	
