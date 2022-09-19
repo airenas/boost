@@ -186,6 +186,7 @@ jobs:
     steps:
       - install-deps
       - prepare
+      - run: sudo apt-get install docker-ci
       - run: make docker/all lotus_src_dir=docker/devnet/fake-lotus
 
   cbor-check:
