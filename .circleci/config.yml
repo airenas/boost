@@ -181,6 +181,13 @@ jobs:
       - run:
           command: "! go fmt ./... 2>&1 | read"
 
+  docker-check:
+    executor: golang
+    steps:
+      - install-deps
+      - prepare
+      - run: make docker/all lotus_src_dir=docker/devnet/fake-lotus
+
   cbor-check:
     executor: golang
     steps:
