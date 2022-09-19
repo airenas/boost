@@ -277,6 +277,7 @@ workflows:
       - gofmt
       - cbor-check
       - gen-check
+      - docker-check
       - docs-check
       - build-all:
           filters:
