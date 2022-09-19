@@ -1,0 +1,13 @@
+name: Build docker devnet images
+on:
+  push:
+    branches: [ main, docker-ci ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build container
+        run: make docker/all lotus_src_dir=docker/devnet/fake-lotus
