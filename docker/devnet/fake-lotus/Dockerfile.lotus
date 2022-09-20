@@ -1,6 +1,6 @@
 #############################################################################
 # Fake docker file for testing purposes
-# User for quick lotus mock for building boost devnet images
+# Mock for building boost devnet images
 #############################################################################
 FROM alpine:3.16 as lotus-test
 
