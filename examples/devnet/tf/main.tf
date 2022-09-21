@@ -2,14 +2,14 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 4.31"
     }
   }
   required_version = ">= 0.14.9"
 }
 
 provider "aws" {
-  region  = "eu-central-1"
+  region  = var.aws_region
   profile = "aireno"
 }
 
@@ -38,17 +38,26 @@ resource "aws_security_group" "boost_sg" {
   }
 }
 
+resource "aws_ec2_host" "macos-host" {
+  instance_type     = "mac2.metal"
+  availability_zone = var.aws_region_az
+  tags = {
+    Name = "macos-host"
+  }
+}
+
 resource "aws_instance" "on_demand_boost" {
-  instance_type = "a1.xlarge"
-  key_name      = "key02"
-  ami = "ami-05ca7bb915b326313"
+  host_id       = aws_ec2_host.macos-host.id
+  instance_type = "mac2.metal"
+  key_name      = "key-ir-01"
+  ami = "ami-0c2581139747f5622"
   vpc_security_group_ids = [aws_security_group.boost_sg.id]
   tags = {
     Name = "On demand: ${var.pr_name}"
   }
   ebs_block_device {
     device_name = "/dev/sda1"
-    volume_size = 30
+    volume_size = 120
   }
 }
 
