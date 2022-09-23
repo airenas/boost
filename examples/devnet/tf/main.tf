@@ -23,6 +23,20 @@ resource "aws_security_group" "boost_sg" {
   }
 
   ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["78.58.39.6/32"]
+  }
+
+  ingress {
+    from_port   = 5900
+    to_port     = 5900
+    protocol    = "tcp"
+    cidr_blocks = ["78.58.39.6/32"]
+  }
+
+  ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -46,18 +60,18 @@ resource "aws_ec2_host" "macos-host" {
   }
 }
 
-resource "aws_instance" "on_demand_boost" {
+resource "aws_instance" "dedicated_mac" {
   host_id       = aws_ec2_host.macos-host.id
   instance_type = "mac2.metal"
-  key_name      = "key-ir-01"
-  ami = "ami-0c2581139747f5622"
+  key_name      = "key-oh-01"
+  ami = "ami-0dc9d5c881eafe57e"
   vpc_security_group_ids = [aws_security_group.boost_sg.id]
   tags = {
-    Name = "On demand: ${var.pr_name}"
+    Name = "Dedicated: ${var.pr_name}"
   }
   ebs_block_device {
     device_name = "/dev/sda1"
-    volume_size = 120
+    volume_size = 200
   }
 }
 

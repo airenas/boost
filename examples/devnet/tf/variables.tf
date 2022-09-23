@@ -5,11 +5,11 @@ variable "pr_name" {
 variable "aws_region_az" {
   type        = string
   description = "AWS Region AZ"
-  default     = "eu-west-1b"
+  default     = "us-east-2c"
 }
 
 variable "aws_region" {
   type        = string
   description = "AWS Region"
-  default     = "eu-west-1"
+  default     = "us-east-2"
 }
