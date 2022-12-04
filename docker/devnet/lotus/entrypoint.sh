@@ -7,9 +7,14 @@ if [ ! -f $LOTUS_PATH/.init.params ]; then
 	echo Done
 fi
 
-if [ ! -f $LOTUS_PATH/.init.genesis ]; then
+if [ ! -f $GENESIS_PATH/.init.genesis ]; then
 	echo Initializing pre seal ...
-	lotus-seed --sector-dir $GENESIS_PATH pre-seal --sector-size $SECTOR_SIZE --num-sectors 1
+	lotus-seed --sector-dir $GENESIS_PATH pre-seal --sector-size $SECTOR_SIZE --num-sectors 2 --fake-sectors
+	touch $GENESIS_PATH/.init.genesis
+	echo Done
+fi
+
+if [ ! -f $LOTUS_PATH/.init.genesis ]; then
 	echo Initializing genesis ...
 	lotus-seed --sector-dir $GENESIS_PATH genesis new $LOTUS_PATH/localnet.json
 	echo Initializing address ...

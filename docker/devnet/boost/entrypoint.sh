@@ -34,7 +34,7 @@ if [ ! -f $BOOST_PATH/.init.boost ]; then
 		--api-sector-index=$MINER_API_INFO   \
 		--wallet-publish-storage-deals=$PUBMSG_WALLET   \
 		--wallet-deal-collateral=$COLLAT_WALLET   \
-		--max-staging-deals-bytes=2000000000
+		--max-staging-deals-bytes=20000000000
 	
 	# echo exit code: $?
 	
