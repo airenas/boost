@@ -24,3 +24,5 @@ lotus-miner.log
 **/.terraform.*
 **/.terraform/**
 **/terraform*
+docker/remote/aws-arm/Makefile.options
+docker/remote/aws-mac/Makefile.options
