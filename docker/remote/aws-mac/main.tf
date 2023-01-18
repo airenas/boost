@@ -41,7 +41,15 @@ resource "aws_security_group" "boost_sg" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["${var.dev_ip}/32"]
-    description = "aireno ssh"
+    description = "dev ssh"
+  }
+
+  ingress {
+    from_port   = 8
+    to_port     = 0
+    protocol    = "icmp"
+    cidr_blocks = ["${var.dev_ip}/32"]
+    description = "dev ping"
   }
 
   egress {
