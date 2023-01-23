@@ -1,0 +1,5 @@
+#user=ec2-user
+#pem=~/.ssh/key-oh-01.pem
+
+user=ubuntu
+pem=~/.ssh/key02.pem
